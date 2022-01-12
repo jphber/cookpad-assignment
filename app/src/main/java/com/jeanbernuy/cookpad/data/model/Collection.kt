@@ -11,7 +11,4 @@ data class Collection(
     @SerializedName("preview_image_urls") var previewImageUrls: ArrayList<String> = arrayListOf()
 
 )
-
-data class Collections (
-    val collection: List<Collection>
-)
+class Collections: ArrayList<Collection>()
