@@ -8,10 +8,13 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.jeanbernuy.cookpad.core.Resource
 import com.jeanbernuy.cookpad.data.DataSource
 import com.jeanbernuy.cookpad.data.repository.CollectionDataRepository
 import com.jeanbernuy.cookpad.databinding.FragmentMainBinding
+import com.jeanbernuy.cookpad.ui.adapters.CollectionAdapter
 import com.jeanbernuy.cookpad.ui.viewmodels.CollectionViewModel
 import com.jeanbernuy.cookpad.ui.viewmodels.VMFactory
 
@@ -46,20 +49,36 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        setupViews()
         viewModel.fetchAllDataCollections.observe(viewLifecycleOwner, Observer { result ->
             when (result) {
                 is Resource.Loading -> {
+                    binding.progressBar.visibility = View.VISIBLE
                 }
                 is Resource.Success -> {
-                    Toast.makeText(requireContext(), "${result.data}", Toast.LENGTH_LONG).show()
+                    binding.progressBar.visibility = View.GONE
+                    binding.rvCollections.adapter = CollectionAdapter(requireContext(), result.data)
                 }
                 is Resource.Failure -> {
+                    binding.progressBar.visibility = View.VISIBLE
                     Toast.makeText(requireContext(), "Error on server...", Toast.LENGTH_LONG).show()
                 }
                 else -> {
+                    Toast.makeText(requireContext(), "Try again...", Toast.LENGTH_LONG).show()
                 }
             }
         })
+    }
+
+    private fun setupViews() {
+        binding.rvCollections.layoutManager = LinearLayoutManager(requireContext())
+        binding.rvCollections.addItemDecoration(
+            DividerItemDecoration(
+                requireContext(),
+                DividerItemDecoration.VERTICAL
+            )
+        )
     }
 
     override fun onDestroyView() {
