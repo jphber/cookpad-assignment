@@ -8,10 +8,10 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import com.jeanbernuy.cookpad.R
 import com.jeanbernuy.cookpad.core.Resource
 import com.jeanbernuy.cookpad.data.DataSource
 import com.jeanbernuy.cookpad.data.repository.CollectionDataRepository
+import com.jeanbernuy.cookpad.databinding.FragmentMainBinding
 import com.jeanbernuy.cookpad.ui.viewmodels.CollectionViewModel
 import com.jeanbernuy.cookpad.ui.viewmodels.VMFactory
 
@@ -22,6 +22,8 @@ import com.jeanbernuy.cookpad.ui.viewmodels.VMFactory
  */
 class MainFragment : Fragment() {
 
+    private var _binding: FragmentMainBinding? = null
+    private val binding get() = _binding!!
     private val viewModel by viewModels<CollectionViewModel> {
         VMFactory(
             CollectionDataRepository(
@@ -38,7 +40,8 @@ class MainFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_main, container, false)
+        _binding = FragmentMainBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -58,5 +61,11 @@ class MainFragment : Fragment() {
             }
         })
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
 
 }
