@@ -43,7 +43,7 @@ class CollectionAdapter(
         override fun bind(item: Collection, position: Int) = with(binding) {
             val itemImage = if (item.previewImageUrls.size > 0) item.previewImageUrls[0] else ""
             Glide.with(context).load(itemImage).centerCrop()
-                .placeholder(R.drawable.ic_launcher_background).into(imvCollection)
+                .placeholder(R.drawable.cookpad_logo).into(imvCollection)
             txtNameCollection.text = item.title
             txtDescription.text = item.description
             binding.root.setOnClickListener {

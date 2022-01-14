@@ -65,8 +65,8 @@ class MainFragment : Fragment(), CollectionAdapter.OnCollectionClickListener {
                         CollectionAdapter(requireContext(), result.data, this)
                 }
                 is Resource.Failure -> {
-                    binding.progressBar.visibility = View.VISIBLE
-                    Toast.makeText(requireContext(), R.string.error_message, Toast.LENGTH_LONG)
+                    binding.progressBar.visibility = View.GONE
+                    Toast.makeText(requireContext(), R.string.try_again_message, Toast.LENGTH_LONG)
                         .show()
                 }
                 else -> {

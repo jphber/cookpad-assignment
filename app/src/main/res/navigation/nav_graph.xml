@@ -17,8 +17,8 @@
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.jeanbernuy.cookpad.ui.CollectionDetailFragment"
-        android:label="Our Recipies"
-        tools:layout="@layout/fragment_detail" >
+        android:label="Our Recipes"
+        tools:layout="@layout/fragment_detail">
         <argument
             android:name="itemCollection"
             app:argType="com.jeanbernuy.cookpad.data.model.Collection" />

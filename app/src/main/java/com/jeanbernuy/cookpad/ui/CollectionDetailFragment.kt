@@ -4,12 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.Glide
 import com.jeanbernuy.cookpad.R
 import com.jeanbernuy.cookpad.databinding.FragmentDetailBinding
-import com.jeanbernuy.cookpad.databinding.FragmentMainBinding
 
 /**
  * A simple [Fragment] contains Collection Detail.
@@ -37,7 +36,16 @@ class CollectionDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Toast.makeText(context,args.itemCollection.title,Toast.LENGTH_LONG).show()
+        setupCollectionDetail()
     }
 
+    private fun setupCollectionDetail() = with(binding) {
+        val itemImage =
+            if (args.itemCollection.previewImageUrls.size > 0) args.itemCollection.previewImageUrls[0] else ""
+        Glide.with(requireContext()).load(itemImage).centerCrop()
+            .placeholder(R.drawable.cookpad_logo).into(ivCollectionPhoto)
+        tvCollectionName.text = args.itemCollection.title
+        tvCollectionDescription.text = args.itemCollection.description
+        tvTotalRecipes.text = args.itemCollection.recipeCount.toString()
+    }
 }
