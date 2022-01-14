@@ -22,9 +22,9 @@ import com.jeanbernuy.cookpad.ui.viewmodels.CollectionViewModel
 import com.jeanbernuy.cookpad.ui.viewmodels.VMFactory
 
 /**
- * A simple [Fragment] subclass.
+ * A simple [Fragment] that contains a list of Collections.
  *
- * create an instance of this fragment.
+ * created by: Jean Bernuy.
  */
 class MainFragment : Fragment(), CollectionAdapter.OnCollectionClickListener {
 
@@ -61,14 +61,18 @@ class MainFragment : Fragment(), CollectionAdapter.OnCollectionClickListener {
                 }
                 is Resource.Success -> {
                     binding.progressBar.visibility = View.GONE
-                    binding.rvCollections.adapter = CollectionAdapter(requireContext(), result.data,this)
+                    binding.rvCollections.adapter =
+                        CollectionAdapter(requireContext(), result.data, this)
                 }
                 is Resource.Failure -> {
                     binding.progressBar.visibility = View.VISIBLE
-                    Toast.makeText(requireContext(), "Error on server...", Toast.LENGTH_LONG).show()
+                    Toast.makeText(requireContext(), R.string.error_message, Toast.LENGTH_LONG)
+                        .show()
                 }
                 else -> {
-                    Toast.makeText(requireContext(), "Try again...", Toast.LENGTH_LONG).show()
+                    binding.progressBar.visibility = View.GONE
+                    Toast.makeText(requireContext(), R.string.error_message, Toast.LENGTH_LONG)
+                        .show()
                 }
             }
         })
@@ -90,7 +94,8 @@ class MainFragment : Fragment(), CollectionAdapter.OnCollectionClickListener {
     }
 
     override fun onCollectionSelected(item: Collection) {
-        findNavController().navigate(R.id.detailFragment)
+        val action = MainFragmentDirections.actionMainFragmentToDetailFragment(item)
+        findNavController().navigate(action)
     }
 
 }

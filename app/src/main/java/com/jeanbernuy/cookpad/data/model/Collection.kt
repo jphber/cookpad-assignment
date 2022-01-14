@@ -1,7 +1,10 @@
 package com.jeanbernuy.cookpad.data.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class Collection(
 
     @SerializedName("id") var id: Int? = null,
@@ -10,5 +13,7 @@ data class Collection(
     @SerializedName("recipe_count") var recipeCount: Int? = null,
     @SerializedName("preview_image_urls") var previewImageUrls: ArrayList<String> = arrayListOf()
 
-)
-class Collections: ArrayList<Collection>()
+): Parcelable
+
+@Parcelize
+class Collections: ArrayList<Collection>(), Parcelable
