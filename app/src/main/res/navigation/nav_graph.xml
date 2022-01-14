@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.jeanbernuy.cookpad.ui.MainFragment"
-        android:label="Welcome"
+        android:label="Welcome Cookpad's Collection"
         tools:layout="@layout/fragment_main">
         <action
             android:id="@+id/action_mainFragment_to_detailFragment"
@@ -17,6 +17,6 @@
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.jeanbernuy.cookpad.ui.DetailFragment"
-        android:label="fragment_detail"
+        android:label="Our Recipies"
         tools:layout="@layout/fragment_detail" />
 </navigation>

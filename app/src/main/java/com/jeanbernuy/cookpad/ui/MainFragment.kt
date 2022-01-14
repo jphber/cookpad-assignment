@@ -8,10 +8,13 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.jeanbernuy.cookpad.R
 import com.jeanbernuy.cookpad.core.Resource
 import com.jeanbernuy.cookpad.data.DataSource
+import com.jeanbernuy.cookpad.data.model.Collection
 import com.jeanbernuy.cookpad.data.repository.CollectionDataRepository
 import com.jeanbernuy.cookpad.databinding.FragmentMainBinding
 import com.jeanbernuy.cookpad.ui.adapters.CollectionAdapter
@@ -23,7 +26,7 @@ import com.jeanbernuy.cookpad.ui.viewmodels.VMFactory
  *
  * create an instance of this fragment.
  */
-class MainFragment : Fragment() {
+class MainFragment : Fragment(), CollectionAdapter.OnCollectionClickListener {
 
     private var _binding: FragmentMainBinding? = null
     private val binding get() = _binding!!
@@ -58,7 +61,7 @@ class MainFragment : Fragment() {
                 }
                 is Resource.Success -> {
                     binding.progressBar.visibility = View.GONE
-                    binding.rvCollections.adapter = CollectionAdapter(requireContext(), result.data)
+                    binding.rvCollections.adapter = CollectionAdapter(requireContext(), result.data,this)
                 }
                 is Resource.Failure -> {
                     binding.progressBar.visibility = View.VISIBLE
@@ -86,5 +89,8 @@ class MainFragment : Fragment() {
         _binding = null
     }
 
+    override fun onCollectionSelected(item: Collection) {
+        findNavController().navigate(R.id.detailFragment)
+    }
 
 }

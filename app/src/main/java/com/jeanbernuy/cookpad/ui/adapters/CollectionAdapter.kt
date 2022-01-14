@@ -11,8 +11,17 @@ import com.jeanbernuy.cookpad.data.model.Collection
 import com.jeanbernuy.cookpad.data.model.Collections
 import com.jeanbernuy.cookpad.databinding.ItemCollectionBinding
 
-class CollectionAdapter(private val context: Context, private val collections: Collections) :
+class CollectionAdapter(
+    private val context: Context,
+    private val collections: Collections,
+    private val itemClickListener: OnCollectionClickListener
+) :
     RecyclerView.Adapter<BaseViewHolder<*>>() {
+
+    interface OnCollectionClickListener {
+        fun onCollectionSelected(item: Collection)
+
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<*> {
         val itemBinding = ItemCollectionBinding.inflate(LayoutInflater.from(context), parent, false)
@@ -37,6 +46,9 @@ class CollectionAdapter(private val context: Context, private val collections: C
                 .placeholder(R.drawable.ic_launcher_background).into(imvCollection)
             txtNameCollection.text = item.title
             txtDescription.text = item.description
+            binding.root.setOnClickListener {
+                itemClickListener.onCollectionSelected(item)
+            }
         }
 
     }
