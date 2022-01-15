@@ -1,4 +1,4 @@
-package com.jeanbernuy.cookpad.ui.viewmodels
+package com.jeanbernuy.cookpad.presentation.ui.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

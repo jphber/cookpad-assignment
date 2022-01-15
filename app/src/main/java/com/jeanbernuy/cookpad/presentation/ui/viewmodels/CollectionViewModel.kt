@@ -1,4 +1,4 @@
-package com.jeanbernuy.cookpad.ui.viewmodels
+package com.jeanbernuy.cookpad.presentation.ui.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
@@ -9,7 +9,6 @@ import kotlinx.coroutines.Dispatchers
 class CollectionViewModel(private val collectionRepository: CollectionRepository) : ViewModel() {
 
     val fetchAllDataCollections = liveData(Dispatchers.IO) {
-        emit(Resource.Loading())
         try {
             emit(collectionRepository.fetchAllCollections())
         } catch (e: Exception) {

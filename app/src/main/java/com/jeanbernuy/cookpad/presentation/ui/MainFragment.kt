@@ -1,4 +1,4 @@
-package com.jeanbernuy.cookpad.ui
+package com.jeanbernuy.cookpad.presentation.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -17,9 +17,9 @@ import com.jeanbernuy.cookpad.data.DataSource
 import com.jeanbernuy.cookpad.data.model.Collection
 import com.jeanbernuy.cookpad.data.repository.CollectionDataRepository
 import com.jeanbernuy.cookpad.databinding.FragmentMainBinding
-import com.jeanbernuy.cookpad.ui.adapters.CollectionAdapter
-import com.jeanbernuy.cookpad.ui.viewmodels.CollectionViewModel
-import com.jeanbernuy.cookpad.ui.viewmodels.VMFactory
+import com.jeanbernuy.cookpad.presentation.ui.adapters.CollectionAdapter
+import com.jeanbernuy.cookpad.presentation.ui.viewmodels.CollectionViewModel
+import com.jeanbernuy.cookpad.presentation.ui.viewmodels.VMFactory
 
 /**
  * A simple [Fragment] that contains a list of Collections.
@@ -56,9 +56,7 @@ class MainFragment : Fragment(), CollectionAdapter.OnCollectionClickListener {
         setupViews()
         viewModel.fetchAllDataCollections.observe(viewLifecycleOwner, Observer { result ->
             when (result) {
-                is Resource.Loading -> {
-                    binding.progressBar.visibility = View.VISIBLE
-                }
+
                 is Resource.Success -> {
                     binding.progressBar.visibility = View.GONE
                     binding.rvCollections.adapter =

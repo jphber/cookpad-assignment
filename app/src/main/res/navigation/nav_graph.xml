@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.jeanbernuy.cookpad.ui.MainFragment"
+        android:name="com.jeanbernuy.cookpad.presentation.ui.MainFragment"
         android:label="Welcome Cookpad's Collection"
         tools:layout="@layout/fragment_main">
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/detailFragment"
-        android:name="com.jeanbernuy.cookpad.ui.CollectionDetailFragment"
+        android:name="com.jeanbernuy.cookpad.presentation.ui.CollectionDetailFragment"
         android:label="Our Recipes"
         tools:layout="@layout/fragment_detail">
         <argument

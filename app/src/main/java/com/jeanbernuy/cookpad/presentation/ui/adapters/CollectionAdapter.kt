@@ -1,4 +1,4 @@
-package com.jeanbernuy.cookpad.ui.adapters
+package com.jeanbernuy.cookpad.presentation.ui.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
