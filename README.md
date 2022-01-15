@@ -34,6 +34,7 @@ The response contains a list of collections items as well as URLs to the picture
 This is a sample Cookpad Recipes app that is supposed to display collections list and the details.
 The first page displays collections list, when one of the items is clicked, it is supposed to show the detail.
 
+| Main Screen | Detail |
 | ![](screenshots/picture_1.png) | ![](screenshots/picture_2.png) |
 
 ## Notes
