@@ -1,9 +1,17 @@
 # Cookpad-Assignment
 
 
-## Settings
+## General
 
-This project has been created with gradle version 7.0, to build please check that you have the Java 11 version setting in your project structure.
+- [Before you start](#before-you-start)
+
+- [Settings](#settings)
+
+- [Libraries Used](#libraries-used)
+
+- [About the project](#about-the-project)
+
+- [Notes](#notes)
 
 ## Before you start
 This project requires the following
@@ -14,7 +22,13 @@ This project requires the following
 
 This is a app built with Kotlin.
 
-## Libraries Used:
+## Settings
+
+This project has been created with gradle version 7.0, to build please check that you have the Java 11 version setting in your project structure.
+
+![](screenshots/settings.png)
+
+## Libraries Used
 - MVVM - ViewModel
 - Fragments
 - Safe Args
